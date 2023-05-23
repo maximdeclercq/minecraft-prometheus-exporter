@@ -12,7 +12,7 @@ import java.util.function.Function;
 
 public class PrometheusExporterConfig {
 
-    public static final PluginConfig<String> HOST = new PluginConfig<>("host", "localhost");
+    public static final PluginConfig<String> HOST = new PluginConfig<>("host", "0.0.0.0");
     public static final PluginConfig<Integer> PORT = new PluginConfig<>("port", 9940);
     public static final List<MetricConfig> METRICS = Arrays.asList(
             metricConfig("entities_total", true, Entities::new),
@@ -31,10 +31,7 @@ public class PrometheusExporterConfig {
             metricConfig("tick_duration_median", true, TickDurationMedianCollector::new),
             metricConfig("tick_duration_average", true, TickDurationAverageCollector::new),
             metricConfig("tick_duration_min", false, TickDurationMinCollector::new),
-            metricConfig("tick_duration_max", true, TickDurationMaxCollector::new),
-
-            metricConfig("player_online", false, PlayerOnline::new),
-            metricConfig("player_statistic", false, PlayerStatistics::new));
+            metricConfig("tick_duration_max", true, TickDurationMaxCollector::new));
 
     private final PrometheusExporter prometheusExporter;
 
